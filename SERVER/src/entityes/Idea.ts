@@ -17,9 +17,6 @@ export class Idea{
     name_idea!:string //имя идеи
 
     @Column()
-    short_desc!:string // короткое описание
-
-    @Column()
     desc!:string // полное описание
 
     @OneToMany(()=> Picture, (pic)=> pic.idea)
@@ -39,5 +36,8 @@ export class Idea{
 
     @Column()
     need_part!:boolean
+
+    @Column()
+    status!:'searching' | 'in_progress' | 'completed'
 
 }

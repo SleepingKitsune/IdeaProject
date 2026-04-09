@@ -38,5 +38,8 @@ export class User {
 
     @Column()
     avatar!: string
+
+    @Column()
+    aboutMe!: string //краткое описание того, кто такой и чем занимался.
     
 }
