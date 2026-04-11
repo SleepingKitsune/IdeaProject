@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express"
+import { UserRole } from "../entityes/User"
 
 export class user_controller{
     static async get(Req:Request, Res:Response, next:NextFunction){
@@ -20,7 +21,6 @@ export class user_controller{
     }
     static async post(Req:Request, Res:Response, next:NextFunction){
         try{
-
         }
         catch(e){
             console.log(e)

@@ -1,0 +1,36 @@
+{
+  "name": "ideaproject",
+  "version": "0.0.1",
+  "description": "",
+  "homepage": "https://github.com/SleepingKitsune/IdeaProject#readme",
+  "bugs": {
+    "url": "https://github.com/SleepingKitsune/IdeaProject/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SleepingKitsune/IdeaProject.git"
+  },
+  "license": "ISC",
+  "author": "DreamFoxy",
+  "type": "commonjs",
+  "main": "index.ts",
+  "scripts": {
+    "test": "test",
+    "dev": "nodemon ./src/index.ts"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "multer": "^2.1.1",
+    "sqlite3": "^5.1.7",
+    "typeorm": "^0.3.27"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.1.0",
+    "@types/node": "^25.5.2",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "tsc": "^2.0.4",
+    "typescript": "^5.9.3"
+  }
+}

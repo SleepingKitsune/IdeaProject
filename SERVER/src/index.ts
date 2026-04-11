@@ -1,4 +1,5 @@
 // 1. Импорт библиотек
+import DbContext from "../src/database/db";
 import router from "./routers/index_router";
 import  Express from "express";
 
@@ -14,7 +15,9 @@ app.get('/', (req, res) => { //роутер
   res.send('Hello World!');//контроллер
 });
 
-// 4. Запуск сервера
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+DbContext.initialize().then(()=>{
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+  });
+
 });

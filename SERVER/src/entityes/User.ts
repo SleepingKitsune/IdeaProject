@@ -20,12 +20,9 @@ export class User {
     email!: string
 
     @Column({
-        
-        type:"enum",
-        enum: UserRole,
         default:UserRole.GHOST
     })
-    role!:UserRole
+    role!:string
 
     @Column()
     password!: string
