@@ -15,5 +15,9 @@ router.post("/", (req:Request, res:Response, next:NextFunction)=>{
 router.delete("/:id", (req:Request, res:Response, next:NextFunction)=>{
     like_controller.del(req,res,next)
 });
+//Маршрут для подсчета лайков
+router.get("/count/idea/:id", (req:Request, res:Response, next:NextFunction)=>{
+    like_controller.getCountByIdeaId(req,res,next)
+});
 
 export default router;
