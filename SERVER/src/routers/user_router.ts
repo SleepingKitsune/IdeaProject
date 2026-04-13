@@ -34,7 +34,7 @@ router.put("/updateUser", (req:Request, res:Response, next:NextFunction)=>{
     user_controller.updateUser(req,res,next)
 });
 
-router.delete("/:id", (req:Request, res:Response, next:NextFunction)=>{
+router.delete("/delete", (req:Request, res:Response, next:NextFunction)=>{
     user_controller.del(req,res,next)
 });
 

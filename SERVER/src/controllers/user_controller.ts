@@ -12,7 +12,7 @@ export class user_controller{
             const {id} = Req.params;
             const parseId = Number(id);
             if(!id || isNaN(parseId)){
-                return Res.status(400).json("Ошибка - неправильные данные");
+                return Res.status(400).json("Ошибка - неправильные данные!");
             }
             const userBank = DbContext.getRepository(User);
             const findUser = await userBank.findOne({
@@ -98,7 +98,7 @@ export class user_controller{
                     sameSite:'lax',
                     maxAge: 1000 * 60 * 60 * 2,
                     path:"/"
-                }).status(200).json("Авторизован")
+                }).status(200).json("Пользователь авторизован")
         }
         catch(e){
             console.log(e)
@@ -107,7 +107,7 @@ export class user_controller{
     }
     static async updateUser(Req:Request, Res:Response, next:NextFunction){
         try{
-            const {Session} = Req.cookies
+            const {Session} = Req.cookies;
             const verifyToken = verify_jwt(Session)
             const {nickname, aboutMe} = Req.body;
             if (
@@ -151,7 +151,7 @@ export class user_controller{
             }
             findUser.email = email;
             await userBank.save(findUser);
-            return Res.status(200).json("Профиль успешно обновлен");
+            return Res.status(200).json("Email успешно обновлен");
 
         }
         catch(e){
@@ -232,9 +232,8 @@ export class user_controller{
             if (!findUser){
                 return Res.status(401).json("Пользователь не найден")
             };
-            await userBank.delete(findUser);
+            await userBank.remove(findUser);
             return Res.status(200).json("Профиль успешно удален");
-
         }
         catch(e){
             console.log(e)

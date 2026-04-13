@@ -33,10 +33,10 @@ export class User {
     @OneToMany(() => Idea, (idea) => idea.user)
     ideas!: Idea[]; // соединяет юзера и идеи. У юзера может быть много идей // СДЕЛАНО
 
-    @Column()
+    @Column({nullable:true})
     avatar!: string
 
-    @Column()
+    @Column({nullable:true})
     aboutMe!: string //краткое описание того, кто такой и чем занимался.
     
 }

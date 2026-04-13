@@ -87,7 +87,7 @@ export class picture_controller{
                 return Res.status(404).json("Не найдена картинка, которую можно удалить")
             }
             console.log(deletePicture, "удалена")
-            Res.status(200).json("Категория успешно удалена");
+            Res.status(200).json("Картинка успешно удалена");
         }
         catch(e){
             console.log(e)

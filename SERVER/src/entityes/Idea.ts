@@ -22,7 +22,7 @@ export class Idea{
     @OneToMany(()=> Picture, (pic)=> pic.idea)
     pictures!:Picture[];
 
-    @Column()
+    @Column({nullable:true})
     main_picture!:string //главная картинка идеи. один к одному с таблицей картинок. (сделать кнопку "сделать главной картинкой")
 
     @Column()
