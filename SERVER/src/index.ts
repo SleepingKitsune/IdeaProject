@@ -2,9 +2,14 @@
 import DbContext from "../src/database/db";
 import router from "./routers/index_router";
 import  Express from "express";
+import ENV from "dotenv"
+
+ENV.config({path: __dirname + "/../.env"})
 
 const app = Express();
 const PORT = process.env.PORT || 3000;
+
+
 
 // 2. Middleware (обработка JSON и статики)
 app.use(Express.json());

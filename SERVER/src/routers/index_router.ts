@@ -12,6 +12,6 @@ router.use("/category", category_router );
 router.use("/idea", idea_router);
 router.use("/like", like_router );
 router.use("/picture", picture_router );
-router.use("user", user_router );
+router.use("/user", user_router );
 
 export default router;
