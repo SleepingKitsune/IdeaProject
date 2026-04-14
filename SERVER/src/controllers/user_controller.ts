@@ -80,8 +80,7 @@ export class user_controller{
                 !password || typeof password != "string"
             ){
                 return Res.status(401).json("Неправильный email или пароль")
-            }
-
+            }``
             const userBank = DbContext.getRepository(User);
             const findUser = await userBank.findOne({where:{email:email}});
             if(!findUser){
@@ -122,8 +121,11 @@ export class user_controller{
             if (!findUser){
                 return Res.status(401).json("Пользователь не найден")
             }
-            findUser.nickname = nickname;
-            findUser.aboutMe = aboutMe;
+            if (findUser.id !== verifyToken.id) {
+                return Res.status(403).json("У вас нет прав на редактирование");
+            }
+            if(findUser.nickname !== undefined)findUser.nickname = nickname;
+            if(findUser.aboutMe !== undefined)findUser.aboutMe = aboutMe;
             await userBank.save(findUser);
             return Res.status(200).json("Профиль успешно обновлен");
         }
@@ -149,7 +151,10 @@ export class user_controller{
             if (!findUser){
                 return Res.status(401).json("Пользователь не найден")
             }
-            findUser.email = email;
+            if (findUser.id !== verifyToken.id) {
+                return Res.status(403).json("У вас нет прав на редактирование");
+            }
+            if(findUser.email !== undefined)findUser.email = email;
             await userBank.save(findUser);
             return Res.status(200).json("Email успешно обновлен");
 
@@ -177,11 +182,14 @@ export class user_controller{
             if (!findUser){
                 return Res.status(401).json("Пользователь не найден")
             }
+            if (findUser.id !== verifyToken.id) {
+                return Res.status(403).json("У вас нет прав на редактирование");
+            }
             if(!await compare(oldPassword, findUser.password)){
                 return Res.status(401).json("Пароли не совпадают");
             }
             const newHashPass = await crypt(newPassword);
-            findUser.password = newHashPass;
+            if(findUser.password !==undefined)findUser.password = newHashPass;
             await userBank.save(findUser);
             return Res.status(200).json("Пароль успешно обновлен");
         }
@@ -206,7 +214,10 @@ export class user_controller{
             if (!findUser){
                 return Res.status(401).json("Пользователь не найден")
             }
-            findUser.avatar = ava.filename;
+            if (findUser.id !== verifyToken.id) {
+                return Res.status(403).json("У вас нет прав на редактирование");
+            }
+            if(findUser.avatar !== undefined)findUser.avatar = ava.filename;
             await userBank.save(findUser);
             return Res.status(200).json("Аватар успешно обновлен");
 
@@ -232,6 +243,9 @@ export class user_controller{
             if (!findUser){
                 return Res.status(401).json("Пользователь не найден")
             };
+            if (findUser.id !== verifyToken.id) {
+                return Res.status(403).json("У вас нет прав на редактирование");
+            }
             await userBank.remove(findUser);
             return Res.status(200).json("Профиль успешно удален");
         }

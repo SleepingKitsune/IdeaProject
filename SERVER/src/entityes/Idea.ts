@@ -9,7 +9,6 @@ export class Idea{
     @PrimaryGeneratedColumn()
     id!:number // уникальный ключ
 
-
     @ManyToOne(()=> Category, (cat)=> cat.ideas) //связывает с таблицей категорий: много идей у одной категории
     category!:Category;
 
