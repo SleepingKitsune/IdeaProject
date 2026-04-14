@@ -16,12 +16,16 @@ router.post("/", (req:Request, res:Response, next:NextFunction)=>{
     idea_controller.post(req,res,next)
 });
 
-router.put("/", (req:Request, res:Response, next:NextFunction)=>{
+router.put("/:id", (req:Request, res:Response, next:NextFunction)=>{
     idea_controller.update(req,res,next)
 });
 
 router.delete("/:id", (req:Request, res:Response, next:NextFunction)=>{
     idea_controller.del(req,res,next)
+});
+
+router.put("/:id/setMainPicture", (req:Request, res:Response, next:NextFunction)=>{
+    idea_controller.setMainPicture(req,res,next)
 });
 
 export default router;

@@ -15,7 +15,7 @@ export class idea_controller{
                 where:{id:parseId},
             });
             if(!findIdea){
-                return Res.status(400).json("Ошибка - пользователь не найден");
+                return Res.status(404).json("Ошибка идея не найдена");
             }
             Res.status(200).json(findIdea);
 
@@ -138,4 +138,44 @@ export class idea_controller{
             Res.status(500).json("Ошибка при удалении идеи");
         }
     }
+    static async setMainPicture(Req: Request, Res: Response, next: NextFunction) {
+        try {
+
+            const { Session } = Req.cookies;
+            const verifyToken = verify_jwt(Session);
+
+            if (!Session || typeof verifyToken === "undefined") {
+                return Res.status(401).json("Вы не авторизованы");
+            }
+            const { id } = Req.params;
+            const { pictureId } = Req.body;
+
+            const parseId = Number(id);
+            if (!id || isNaN(parseId) || !pictureId) {
+                return Res.status(400).json("Неверный ID идеи или не указана картинка");
+            }
+
+            const ideaBank = DbContext.getRepository(Idea);
+
+            const findIdea = await ideaBank.findOne({
+                where: { id: parseId },
+                relations: ["user"]
+            });
+
+            if (!findIdea) {
+                return Res.status(404).json({ error: "Идея не найдена" });
+            }
+            if (findIdea.user.id !== verifyToken.id) {
+                return Res.status(403).json("У вас нет прав на изменение этой идеи");
+            }
+            findIdea.main_picture = pictureId;
+            await ideaBank.save(findIdea);
+
+            return Res.status(200).json("Главная картинка успешно установлена");
+
+        } catch (e) {
+            console.error(e);
+            Res.status(500).json("Ошибка при установке главной картинки");
+        }
+}
 }

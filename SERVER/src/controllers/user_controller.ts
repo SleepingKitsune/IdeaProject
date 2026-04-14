@@ -80,7 +80,7 @@ export class user_controller{
                 !password || typeof password != "string"
             ){
                 return Res.status(401).json("Неправильный email или пароль")
-            }``
+            }
             const userBank = DbContext.getRepository(User);
             const findUser = await userBank.findOne({where:{email:email}});
             if(!findUser){
