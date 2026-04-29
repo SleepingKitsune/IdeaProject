@@ -47,10 +47,11 @@ export class user_controller{
         }
     }
     static async registration(Req:Request, Res:Response, next:NextFunction){
-        try{
+        try{console.log(1)
             const { nickname, email, password} = Req.body;
+            console.log(Req.body)
             if (!nickname || typeof nickname != "string" || !email || typeof email != "string" || !password || typeof password != "string") {
-                return Res.status(400).json({ error: "nickname, email и password обязательны" });
+                return Res.status(400).json({ error: "nickname, email и password обязательны"});
             }
             const userBank = DbContext.getRepository(User);
             const findUser = await userBank.findOne({ where: { email:email } });
@@ -92,7 +93,7 @@ export class user_controller{
             Res.cookie("Session", create_jwt(
                 new Jwt_payload(findUser.id, findUser.nickname, findUser.role)), 
                 {
-                    httpOnly:true,
+                    httpOnly:false,
                     secure:true,
                     sameSite:'lax',
                     maxAge: 1000 * 60 * 60 * 2,

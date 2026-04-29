@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -6,7 +6,7 @@ import {
   Navigate,
 } from 'react-router-dom';
 import type { JSX } from 'react';
-import NavBar from './components/NavBar';
+import NavBar, { type INavBar } from './components/NavBar';
 //ПУБЛИЧНЫЕ СТРАНИЦЫ
 import HomePage from './pages/HomePage'; //Страничка, рассказывающая о проекте
 import LoginPage from './pages/LoginPage'; //Страница авторизации
@@ -19,27 +19,29 @@ import EditIdeaPage from './pages/EditIdeaPage';//Страница редакт�
 import FavoriteIdeaPage from './pages/FavoriteIdeaPage';//Страница с любимыми идеями (на которые пользователь поставил лайк)
 import MyIdeasPage from './pages/MyIdeasPage';// страница с созданными пользователем идеями
 import IdeaDetailPage from './pages/IdeaDetailPage'; //страничка с деталями идеи
+import AuthPage from './pages/AuthPage';
+import Cookies from 'js-cookie';
 
-
-const isAuthenticated = () => {
-  return localStorage.getItem('token'); 
-};
-
-const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-  if (!isAuthenticated()) {
-    return <Navigate to="/login" />;
-  }
-  return children;
-};
+// const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+//   if (!isAuthenticated()) {
+//     return <Navigate to="/login" />;
+//   }
+//   return children;
+// };
 
 function App() {
+  let [isLoggedIn, setIsloggedIn] = useState(():string=>{if (Cookies.get("Session") != undefined) {
+    return "1"
+  } else {
+    return ""
+  }});
   return (
     <Router>
-      <NavBar />
+      <NavBar isLoggedIn={isLoggedIn} isloggedInSet={setIsloggedIn}/>
       <Routes>
         {/* --- ПУБЛИЧНЫЕ РУТЫ (Доступны всем) --- */}
         <Route path="/" element={<HomePage />} /> {/* Переправляет на страничку о нас*/}
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<AuthPage isloggedIn={setIsloggedIn}/>} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/allIdea" element={<AllIdeaPage />} /> {/* Можно сделать редирект на главную */}
 
@@ -47,27 +49,27 @@ function App() {
         <Route
           path="/create-idea"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <CreateIdeaPage />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
 
         <Route
           path="/profile"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <ProfilePage />
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
 
           <Route
           path="/edit-idea/:id"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <EditIdeaPage />
-          </ProtectedRoute>
+          // </ProtectedRoute>
           }
           />
         
@@ -75,25 +77,25 @@ function App() {
           <Route
           path="/favorite-idea"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <FavoriteIdeaPage />
-          </ProtectedRoute>
+          // </ProtectedRoute>
           }
           />
           <Route
           path="/my-ideas"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <MyIdeasPage />
-          </ProtectedRoute>
+          // </ProtectedRoute>
           }
           />
           <Route
           path="/idea-detail/:id"
           element={
-            <ProtectedRoute>
+            // <ProtectedRoute>
               <IdeaDetailPage />
-          </ProtectedRoute>
+          // </ProtectedRoute>
           }
           />
         

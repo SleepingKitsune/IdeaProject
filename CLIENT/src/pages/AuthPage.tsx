@@ -1,15 +1,17 @@
-import React, { useState, type FormEvent } from "react";
+import React, { useState, type FC, type FormEvent } from "react";
 import axios from "axios";
 import type { Field } from "../components/Form";
 import Form from "../components/Form";
-import type IUser from "../components/interfaces/IUser";
+import Cookie from "js-cookie"
 
+interface IAuth {
+    isloggedIn:React.Dispatch<React.SetStateAction<string>>
+}
 
-const RegisterPage = () => {
-    const [nickname, setNickname] = useState("");
+const AuthPage: FC<IAuth> = ({isloggedIn}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [submit, setSubmit]= useState ("Зарегистрироваться");
+    const [submit, setSubmit]= useState ("Авторизоватся");
 
     const sendRegVal = async(e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -17,24 +19,21 @@ const RegisterPage = () => {
     }
     const fetchVal = async() =>{
         if (
-            nickname.length != 0 ||
             email.length != 0 ||
             password.length != 0
         )
         {
-            const sendObj:IUser = {
-                nickname:nickname,
+            const sendObj = {
                 email:email,
                 password:password
             }
             console.log(sendObj)
-            const res = await axios.post(`http://localhost:3000/user/registration`, sendObj);
-            console.log(res)
+            const res = await axios.post(`http://localhost:3000/user/auth`, sendObj, {withCredentials:true});
+            isloggedIn("1")
             }
         }
 
     const fields:Field[] = [
-        {name:"name", type:"text", value:nickname, setVal:setNickname, onClick: ()=>{}},
         {name:"email", type:"email", value:email, setVal:setEmail, onClick: ()=>{}},
         {name:"password", type:"password", value:password, setVal:setPassword, onClick: ()=>{}},
         {name:"submit_button", type:"submit", value:submit, setVal:setSubmit, onClick: undefined}
@@ -42,9 +41,9 @@ const RegisterPage = () => {
 
     return (
         <div>
-        <Form name="register" width={500} height={100} fields={fields} submit={sendRegVal}/>
+        <Form name="auth" width={500} height={100} fields={fields} submit={sendRegVal}/>
     </div>
     )
 }
 
-export default RegisterPage;
+export default AuthPage;

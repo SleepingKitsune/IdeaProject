@@ -1,16 +1,17 @@
 // src/components/NavBar.tsx
 
-import React from 'react';
+import Cookie from 'js-cookie';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import useLogout from '../hooks/useLogout';
-import isAuthenticated from '../App'
 
-const NavBar: React.FC = () => {
-  const logout = useLogout();
-  const isLoggedIn = isAuthenticated();
+export interface INavBar {
+  isLoggedIn:string,
+  isloggedInSet:React.Dispatch<React.SetStateAction<string>>
+}
 
+const NavBar: React.FC<INavBar> = ({isLoggedIn, isloggedInSet}) => {
+  useEffect(()=>{},[isLoggedIn]);
   
-
   return (
     <nav className="home-nav">
       <ul>
@@ -42,7 +43,7 @@ const NavBar: React.FC = () => {
         )}
 
         {/* Ссылки для авторизованных пользователей. ПРОПИСАТЬ ОСТАВШИЕСЯ */}
-        {isLoggedIn && (
+        {isLoggedIn ? (
           <>
             <li>
               <NavLink to="/profile" className={({ isActive }) => (isActive ? 'active' : '')}>
@@ -57,12 +58,12 @@ const NavBar: React.FC = () => {
 
             <li>
               {/* Кнопка выхода */}
-              <button onClick={logout} className="logout-button">
+              <button className="logout-button" onClick={()=>{Cookie.remove("Session"); isloggedInSet(""); }}>
                 Выход
               </button>
             </li>
           </>
-        )}
+        ):null}
       </ul>
     </nav>
   );

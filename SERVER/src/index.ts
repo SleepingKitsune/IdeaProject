@@ -16,15 +16,17 @@ const PORT = process.env.PORT || 3000;
 // 2. Middleware (обработка JSON и статики)
 app.use(cookieParser());
 app.use(Express.json());
+app.use(cors(
+  {
+      origin:'http://localhost:5173',
+      optionsSuccessStatus:200,
+      maxAge:600,
+      credentials:true
+  }))
 app.use(router);
 const frontEndProto = process.env.FRONT_PROTO || "http"
 const frontEndHost = process.env.FRONT_HOST || "localhost"
-const frontEndPort = process.env.FRONT_PORT || 45000
-app.use(cors(
-  {
-      origin:`${frontEndProto}://${frontEndHost}:${frontEndPort}`, 
-      credentials: true
-  }))
+const frontEndPort = process.env.FRONT_PORT || 5173
 
 // 3. Маршруты (Routes)
 app.get('/', (req, res) => { //роутер

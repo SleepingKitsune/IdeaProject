@@ -14,7 +14,7 @@ body {
   
   /* --- Навигация --- */
   .home-nav {
-    background-color: #1565c0; /* Глубокий синий */
+      background-color: #702d6d; /* Глубокий синий */
     color: white;
     padding: 1rem;
   }
@@ -45,7 +45,7 @@ body {
   }
   
   .home-content h1 {
-    color: #1565c0;
+    color: #650c99;
     font-size: 2.5rem;
   }
   
@@ -64,7 +64,7 @@ body {
   
   .cta-button {
       display: inline-block;
-      background-color: #ff9800; /* Оранжевый */
+      background-color: #650c99; /* Темнее при наведении */
       color: white;
       padding: 12px 25px;
       text-decoration: none;
@@ -75,12 +75,12 @@ body {
   }
   
   .cta-button:hover {
-      background-color: #e68900; /* Темнее при наведении */
+      background-color: #9200e6; /* Темнее при наведении */
   }
   
   /* --- Подвал --- */
   .home-footer {
-      background-color: #1565c0;
+      background-color: #702d6d;
       color: white;
       padding: 2rem;
       display: flex;
