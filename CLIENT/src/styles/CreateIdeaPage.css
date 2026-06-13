@@ -1,0 +1,72 @@
+
+.createForm {
+    max-width: 800px;
+    margin:50px;
+    padding: auto;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(75, 34, 65, 0.1);
+  }
+  
+  .createForm h2 {
+    text-align: center;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  .createForm .field-item {
+    margin-bottom: 5px;
+  }
+  .createForm label {
+    display: block;
+    padding: 1px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #444;
+  }
+
+  .createForm input[type="text"],
+  .createForm textarea,
+  .createForm select {
+    width: 650px;
+    padding:20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.2s;
+  }
+  
+  .createForm input[type="text"]:focus,
+  .createForm textarea:focus,
+  .createForm select:focus {
+    border-color: #6b136e;
+    outline: none;
+  }
+  
+  .createForm textarea {
+    min-height: 250px;
+    min-width:650px;
+    overflow-y: auto;
+    resize: none;
+    
+  }
+  .createForm input[type="checkbox"] {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .createForm input[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background-color: #94269e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .createForm input[type="submit"]:hover {
+    background-color: #662979;
+  }

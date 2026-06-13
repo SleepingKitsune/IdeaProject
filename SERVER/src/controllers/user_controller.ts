@@ -17,18 +17,55 @@ export class user_controller{
             const userBank = DbContext.getRepository(User);
             const findUser = await userBank.findOne({
                 where:{id:parseId},
-                select: ["id", "nickname", "email", "aboutMe"]
+                relations: ['likes', 'ideas']
             });
             if(!findUser){
                 return Res.status(400).json("Ошибка - пользователь не найден");
             }
-            Res.status(200).json(findUser);
+            Res.status(200).json({
+                id: findUser.id,
+                nickname: findUser.nickname,
+                role: findUser.role,
+                likes: findUser.likes,
+                ideas: findUser.ideas,
+                avatar: findUser.avatar,
+                aboutMe: findUser.aboutMe,
+            });
         }
         catch(e){
             console.log(e)
             Res.status(500).json("Ошибка при поиске пользователя");
         }
 
+    }
+
+    static async getForAuthUser(Req:Request, Res:Response, next:NextFunction){
+        try{
+            const {Session} = Req.cookies;
+            const verifyToken = verify_jwt(Session)
+            if (!Session || typeof verifyToken == "undefined")
+                return Res.status(404).json("Неправильная авторизация")
+
+            const userRepo = DbContext.getRepository(User)
+            const findUser = await userRepo.findOne({where:{id:verifyToken.id}, relations: ["likes", "ideas"]})
+            if(!findUser)
+                return Res.status(404).json("Неправильная Авторизация")
+
+            Res.status(200).json({
+                id: findUser.id,
+                nickname: findUser.nickname,
+                email: findUser.email,
+                role: findUser.role,
+                likes: findUser.likes,
+                ideas: findUser.ideas,
+                avatar: findUser.avatar,
+                aboutMe: findUser.aboutMe,
+            })
+        }
+        catch(e){
+            console.log(e)
+            Res.status(500).json("Ошибка при поиске пользователя");
+        }
     }
     static async getAll(Req:Request, Res:Response, next:NextFunction){
         try{
@@ -218,7 +255,7 @@ export class user_controller{
             if (findUser.id !== verifyToken.id) {
                 return Res.status(403).json("У вас нет прав на редактирование");
             }
-            if(findUser.avatar !== undefined)findUser.avatar = ava.filename;
+            findUser.avatar = ava.filename;
             await userBank.save(findUser);
             return Res.status(200).json("Аватар успешно обновлен");
 

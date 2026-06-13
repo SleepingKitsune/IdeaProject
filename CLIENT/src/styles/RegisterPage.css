@@ -1,0 +1,81 @@
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+  
+.createForm {
+    max-width: 800px;
+    margin: 50px;
+    padding: 50px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(75, 34, 65, 0.1);
+  }
+  
+  .createForm h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .createForm .field-item {
+    margin-bottom: 10px;
+  }
+  
+  .createForm label {
+    display: block;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #444;
+  }
+  
+  .createForm input[type="text"],
+  .createForm input[type="email"],
+  .createForm input[type="password"],
+  .createForm textarea,
+  .createForm select {
+    width: 650px;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.2s;
+  }
+  
+  .createForm input[type="text"]:focus,
+  .createForm input[type="email"]:focus,
+  .createForm input[type="password"]:focus,
+  .createForm textarea:focus,
+  .createForm select:focus {
+    border-color: #6b136e;
+    outline: none;
+  }
+  
+  .createForm textarea {
+    min-height: 450px;
+    min-width: 450px;
+    overflow-y: auto;
+    resize: none;
+  }
+  
+  
+  .createForm input[type="submit"] {
+    width: 80.5%;
+    padding: 100px;
+    background-color: #94269e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .createForm input[type="submit"]:hover {
+    background-color: #662979;
+  }
+  

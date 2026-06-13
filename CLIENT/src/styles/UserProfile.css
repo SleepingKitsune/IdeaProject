@@ -1,0 +1,164 @@
+
+.userProfile-page-container {
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    padding: 2rem 1rem;
+}
+
+.userProfile-profile-block {
+    width: 1200px;
+    max-width: 1920px;
+    background: linear-gradient(150deg, #ffffff, #eaf4ff); 
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* Для скругления нижних углов у сетки */
+    display: flex;
+    flex-direction: column;
+}
+
+.userProfile-author-info {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(150deg, #650c99, #94269e);
+    color: white;
+}
+
+.userProfile-author-info img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid rgba(226, 202, 231, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.userProfile-author-info h2 {
+    font-size: 2em;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.userProfile-author-info p.role {
+    font-size: 1.1em;
+    opacity: 0.9;
+    margin-bottom: 15px;
+}
+
+.userProfile-author-info .bio {
+    font-style: italic;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto 25px;
+}
+
+.userProfile-button {
+    background: linear-gradient(to right, #6f2a75, #94269e);
+    color: white !important;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.userProfile-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(85, 9, 79, 0.4);
+}
+
+.userProfile-ideas-section {
+    padding: 2rem;
+    display: grid;
+    gap: 25px;
+}
+
+@media (min-width: 768px) {
+    .userProfile-ideas-section {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+.userProfile-idea-card {
+    background: linear-gradient(to bottom left, #ffffff, #fdf9ff);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.userProfile-idea-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+
+.userProfile-idea-card img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+
+.userProfile-idea-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.userProfile-idea-title {
+    font-size: 1.4em;
+    margin-bottom: 12px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.userProfile-idea-meta {
+    font-size: 0.9em;
+    color: #aeb0b5;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.userProfile-idea-desc {
+    flex-grow: 1;
+    color: #34495e;
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.userProfile-idea-card .button-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto; 
+}
+
+.userProfile-idea-card button {
+    background-color: transparent;
+    border: none;
+    color: #6e0aa8;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background-color 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.userProfile-idea-card button:hover {
+    background-color: #f0f5ff;
+}

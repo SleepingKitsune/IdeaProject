@@ -1,0 +1,183 @@
+/* Базовые стили */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #2c045a;
+}
+
+/* ============ СТРАНИЦА ОБЕРТКА ============ */
+.page-wrapper {
+    display: flex;
+    gap: 2rem;
+    max-width: 1920px;
+    margin: 10px;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+}
+
+/* ============ БОКОВАЯ ПАНЕЛЬ ============ */
+.sidebar {
+    width: 380px;
+    flex-shrink: 0;
+}
+
+.sidebar-card {
+    background: linear-gradient(135deg,#650c99, #94269e);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.15);
+    position: sticky;
+    top: 2rem;
+}
+
+.sidebar-title {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    
+}
+
+.sidebar-card select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23fff" height="16" viewBox="0 0 24 24" width="16"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 26px;
+}
+
+.sidebar-card select:hover,
+.sidebar-card select:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.sidebar-card select option {
+    background-color: #2d3748;
+    color: #ffffff;
+}
+
+/* ============ ГЛАВНАЯ ОБЛАСТЬ ============ */
+.main-content {
+    flex: 1;
+    min-width: 0; /* Чтобы текст внутри карточек не переносился на всю страницу */
+}
+
+/* ============ ПОИСКОВАЯ СТРОКА ============ */
+.search-container {
+    margin-bottom: 2rem;
+}
+
+.search-wrapper {
+    position: relative;
+}
+
+.search-wrapper input {
+    width: 100%;
+    padding: 1rem 1.25rem 1rem 2.75rem;
+    font-size: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.search-wrapper input::placeholder {
+    color: #9f12bb98;
+}
+
+.search-wrapper input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 4px 16px rgba(102, 126, 234, 0.2);
+    background-color: #f9f9ff;
+}
+
+.search-icon {
+    position: absolute;
+    left: 0.875rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #182353;
+    font-size: 1.25rem;
+    pointer-events: none;
+}
+
+/* Стили для карточек идей */
+.all-ideas-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 1.5rem;
+}
+
+.idea-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.idea-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.idea-card img {
+    width: 30%;
+    height: 30%;
+    object-fit: cover;
+}
+
+.idea-content {
+    padding: 1.25rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.idea-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.idea-meta {
+    color: #6c757d;
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+}
+
+.idea-desc {
+    flex-grow: 1;
+    color: #495057;
+    margin-bottom: 1rem;
+}
+
+.idea-desc p:last-child {
+    margin-bottom: 0;
+}

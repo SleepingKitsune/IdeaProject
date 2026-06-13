@@ -12,6 +12,7 @@ const app = Express();
 const PORT = process.env.PORT || 3000;
 
 
+app.use("/static",Express.static(__dirname + "/static"))
 
 // 2. Middleware (обработка JSON и статики)
 app.use(cookieParser());

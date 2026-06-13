@@ -3,6 +3,7 @@
 import Cookie from 'js-cookie';
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export interface INavBar {
   isLoggedIn:string,
@@ -25,7 +26,7 @@ const NavBar: React.FC<INavBar> = ({isLoggedIn, isloggedInSet}) => {
         {!isLoggedIn && (
           <>
             <li>
-              <NavLink to="/login" className={({ isActive }) => (isActive ? 'active' : '')}>
+              <NavLink to="/auth" className={({ isActive }) => (isActive ? 'active' : '')}>
                 Войти
               </NavLink>
             </li>
@@ -42,9 +43,14 @@ const NavBar: React.FC<INavBar> = ({isLoggedIn, isloggedInSet}) => {
           </>
         )}
 
-        {/* Ссылки для авторизованных пользователей. ПРОПИСАТЬ ОСТАВШИЕСЯ */}
+        {/* Ссылки для авторизованных пользователей.*/}
         {isLoggedIn ? (
           <>
+            <li>
+                <NavLink to="/allIdea" className={({ isActive }) => (isActive ? 'active' : '')}>
+                Все идеи
+                </NavLink>
+            </li>
             <li>
               <NavLink to="/profile" className={({ isActive }) => (isActive ? 'active' : '')}>
                 Профиль
@@ -55,10 +61,24 @@ const NavBar: React.FC<INavBar> = ({isLoggedIn, isloggedInSet}) => {
                 Создать идею
               </NavLink>
             </li>
-
             <li>
-              {/* Кнопка выхода */}
-              <button className="logout-button" onClick={()=>{Cookie.remove("Session"); isloggedInSet(""); }}>
+              <NavLink to="/favorite-idea" className={({ isActive }) => (isActive ? 'active' : '')}>
+                Понравившиеся идеи
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/my-ideas" className={({ isActive }) => (isActive ? 'active' : '')}>
+                Мои идеи
+              </NavLink>
+            </li>
+            <li>
+              <button className="logout-bottom" 
+                onClick={()=>{
+                Cookie.remove("Session"); 
+                isloggedInSet(""); 
+                window.location.href = "/"; 
+                }}
+              >
                 Выход
               </button>
             </li>

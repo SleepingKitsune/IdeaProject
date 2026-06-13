@@ -33,7 +33,7 @@ export class User {
     @OneToMany(() => Idea, (idea) => idea.user)
     ideas!: Idea[]; // соединяет юзера и идеи. У юзера может быть много идей // СДЕЛАНО
 
-    @Column({nullable:true})
+    @Column({default:"user.png", nullable:true})
     avatar!: string
 
     @Column({nullable:true})
